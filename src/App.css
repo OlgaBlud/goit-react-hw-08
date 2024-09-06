@@ -4,3 +4,7 @@
   color: rgb(1, 42, 30);
   padding: 25px 35px;
 }
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}

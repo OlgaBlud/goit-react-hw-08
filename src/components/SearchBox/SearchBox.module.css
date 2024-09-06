@@ -1,0 +1,37 @@
+.searchWrap {
+  border: 1px solid rgb(8, 110, 79);
+  border-radius: 9px;
+  margin-bottom: 20px;
+  max-width: 400px;
+  padding: 20px 15px;
+  background-color: rgb(234, 251, 246);
+  display: flex;
+  flex-direction: column;
+}
+.searchLabel {
+  margin-bottom: 5px;
+}
+.searchInput {
+  max-width: 300px;
+  padding: 8px 5px;
+  border: 1px solid rgb(5, 85, 61);
+  border-radius: 4px;
+  margin-right: 10px;
+  outline: transparent;
+}
+
+/* .form {
+ 
+}
+.inputWrap {
+  margin-bottom: 20px;
+  
+}
+.inputLabel {
+  
+}
+.input {
+
+}
+
+ */

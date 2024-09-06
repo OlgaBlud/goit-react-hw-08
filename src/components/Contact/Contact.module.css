@@ -1,0 +1,65 @@
+.contactItem {
+  min-width: 250px;
+  flex-basis: calc((100%-8 * 3) / 4);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(8, 110, 79);
+  border-radius: 4px;
+}
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dataWrap {
+  display: flex;
+  align-items: center;
+}
+.icon {
+  margin-right: 5px;
+  color: rgb(8, 110, 79);
+}
+.contactName {
+}
+.contactPhone {
+}
+.deleteContactBtn {
+  min-width: 80px;
+  padding: 10px 0;
+  color: rgb(209, 255, 239);
+  background-color: rgba(5, 85, 61, 0.9);
+  border: none;
+  border-radius: 4px;
+}
+
+/* .form {
+ 
+}
+.inputWrap {
+  margin-bottom: 20px;
+
+}
+.inputLabel {
+ 
+}
+.input {
+  max-width: 300px;
+  padding: 8px 5px;
+  border: 1px solid rgb(5, 85, 61);
+  border-radius: 4px;
+  margin-right: 10px;
+  outline: transparent;
+}
+.inputErrorMsg {
+  color: rgb(142, 19, 60);
+}
+.submitBtn {
+ 
+}
+.submitBtn:hover,
+.submitBtn:focus {
+  background-color: rgb(5, 85, 61);
+  outline: transparent;
+} */

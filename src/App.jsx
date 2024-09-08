@@ -16,44 +16,44 @@ const LoginPage = lazy(() => import("./pages/LoginPage"));
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 
 function App() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   const isLogedIn = useSelector(selectAuthIsLoggedIn);
-  // const isRefreshing = useSelector(selectAuthIsRefreshing);
+  const isRefreshing = useSelector(selectAuthIsRefreshing);
   console.log("isLogedIn", isLogedIn);
-  // console.log("isRefreshing", isRefreshing);
-  // if (isRefreshing) {
-  //   return <div>User is refreshing. Please wait.</div>;
-  // } else
-  return (
-    <div className="phonebookWrap">
-      <header>
-        <nav className="navigation">
-          <NavLink to="/">Home Page</NavLink>
-          {isLogedIn ? (
-            <NavLink to="/contacts">Contacts Page</NavLink>
-          ) : (
-            <>
-              <NavLink to="/login">Login Page</NavLink>
-              <NavLink to="/register">Registration Page</NavLink>
-            </>
-          )}
-        </nav>
-      </header>
-      <main>
-        <Suspense fallback={<div>Loading ...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-          </Routes>
-        </Suspense>
-      </main>
-    </div>
-  );
+  console.log("isRefreshing", isRefreshing);
+  if (isRefreshing) {
+    return <div>User is refreshing. Please wait.</div>;
+  } else
+    return (
+      <div className="phonebookWrap">
+        <header>
+          <nav className="navigation">
+            <NavLink to="/">Home Page</NavLink>
+            {isLogedIn ? (
+              <NavLink to="/contacts">Contacts Page</NavLink>
+            ) : (
+              <>
+                <NavLink to="/login">Login Page</NavLink>
+                <NavLink to="/register">Registration Page</NavLink>
+              </>
+            )}
+          </nav>
+        </header>
+        <main>
+          <Suspense fallback={<div>Loading ...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/contacts" element={<ContactsPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegistrationPage />} />
+            </Routes>
+          </Suspense>
+        </main>
+      </div>
+    );
 }
 
 export default App;

@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
       console.log("data register : ", data);
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -37,7 +37,7 @@ export const login = createAsyncThunk(
       console.log("data login : ", data);
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -52,7 +52,7 @@ export const refreshUser = createAsyncThunk(
       console.log("data refresh", data);
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

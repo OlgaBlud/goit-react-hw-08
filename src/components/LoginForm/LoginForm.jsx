@@ -69,10 +69,9 @@ const LoginForm = () => {
         >
           Log In
         </button>
-        {/* {error && (
+        {error && (
           <p className={css.errorText}>Oops, some error occured... {error}</p>
-        )} */}
-        {error && <div className={css.errorText}>Some error occurred. </div>}
+        )}
       </Form>
     </Formik>
   );

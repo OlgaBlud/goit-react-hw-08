@@ -84,7 +84,9 @@ const RegistrationForm = () => {
         >
           Sign Up
         </button>
-        {error && <div className={css.errorText}>Some error occurred. </div>}
+        {error && (
+          <p className={css.errorText}>Oops, some error occured... {error}</p>
+        )}
       </Form>
     </Formik>
   );

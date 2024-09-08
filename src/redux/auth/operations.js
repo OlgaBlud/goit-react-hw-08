@@ -65,4 +65,11 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("auth/logout", () => {});
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await instance.post("/users/logout");
+    return;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

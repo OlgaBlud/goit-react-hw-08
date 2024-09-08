@@ -1,42 +1,48 @@
-import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
-import { selectContacts } from "./redux/contacts/slice";
+
 import { lazy, Suspense, useEffect } from "react";
-import { fetchContacts } from "./redux/contacts/operations";
+import { useDispatch, useSelector } from "react-redux";
+
 import { NavLink, Route, Routes } from "react-router-dom";
+import {
+  selectAuthIsLoggedIn,
+  selectAuthIsRefreshing,
+} from "./redux/auth/selectors";
+import { refreshUser } from "./redux/auth/operations";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const ContactsPage = lazy(() => import("./pages/ContactsPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RegistrationPage = lazy(() => import("./pages/RegistrationPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const ContactsPage = lazy(() => import("./pages/ContactsPage"));
+
 function App() {
-  const dispatch = useDispatch();
-  const { items, loading, error } = useSelector(selectContacts);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+  const isLogedIn = useSelector(selectAuthIsLoggedIn);
+  // const isRefreshing = useSelector(selectAuthIsRefreshing);
+  console.log("isLogedIn", isLogedIn);
+  // console.log("isRefreshing", isRefreshing);
+  // if (isRefreshing) {
+  //   return <div>User is refreshing. Please wait.</div>;
+  // } else
   return (
     <div className="phonebookWrap">
       <header>
         <nav className="navigation">
           <NavLink to="/">Home Page</NavLink>
-          <NavLink to="/contacts">Contacts Page</NavLink>
-          <NavLink to="/login">Login Page</NavLink>
-          <NavLink to="/register">Registration Page</NavLink>
+          {isLogedIn ? (
+            <NavLink to="/contacts">Contacts Page</NavLink>
+          ) : (
+            <>
+              <NavLink to="/login">Login Page</NavLink>
+              <NavLink to="/register">Registration Page</NavLink>
+            </>
+          )}
         </nav>
       </header>
       <main>
-        <h1>Phonebook</h1>
-        {loading && <h2>Loading...</h2>}
-        {error && <h2>{error}</h2>}
-        <ContactForm />
-        <SearchBox />
-        {items.length > 0 && <ContactList />}
         <Suspense fallback={<div>Loading ...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -51,3 +57,45 @@ function App() {
 }
 
 export default App;
+
+// const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+// const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
+// const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+// const TasksPage = lazy(() => import("../pages/TasksPage/TasksPage"));
+
+// export const App = () => {
+//   const dispatch = useDispatch();
+//   const isRefreshing = useSelector(selectIsRefreshing);
+
+//   useEffect(() => {
+//     dispatch(refreshUser());
+//   }, [dispatch]);
+
+//   return isRefreshing ? (
+//     <b>Refreshing user...</b>
+//   ) : (
+//     <Layout>
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route
+//           path="/register"
+//           element={
+//             <RestrictedRoute redirectTo="/tasks" component={<RegisterPage />} />
+//           }
+//         />
+//         <Route
+//           path="/login"
+//           element={
+//             <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+//           }
+//         />
+//         <Route
+//           path="/tasks"
+//           element={
+//             <PrivateRoute redirectTo="/login" component={<TasksPage />} />
+//           }
+//         />
+//       </Routes>
+//     </Layout>
+//   );
+// };

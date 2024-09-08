@@ -1,3 +1,6 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { login, refreshUser, register } from "./operations";
+
 const INITIAL_STATE = {
   user: {
     name: null,
@@ -6,15 +9,55 @@ const INITIAL_STATE = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
-
-// Операції слайсу auth
-
-// Додайте у файл redux/auth/operations.js операції, оголошені за допомогою createAsyncThunk, для роботи з користувачем:
-
-// register - для реєстрації нового користувача. Базовий тип екшену "auth/register". Використовується у компоненті RegistrationForm на сторінці реєстрації.
-// login - для логіну існуючого користувача. Базовий тип екшену "auth/login". Використовується у компоненті LoginForm на сторінці логіну.
-// logout - для виходу з додатка. Базовий тип екшену "auth/logout". Використовується у компоненті UserMenu у шапці додатку.
-// refreshUser - оновлення користувача за токеном. Базовий тип екшену "auth/refresh". Використовується у компоненті App під час його монтування.
-
-// Токен авторизованого користувача потрібно зберігати в локальному сховищі за допомогою бібліотеки persist.
+const authSlice = createSlice({
+  name: "auth",
+  initialState: INITIAL_STATE,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(register.pending, (state) => {
+        // state.isLoggedIn = false;
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.isLoggedIn = true;
+        state.token = payload.token;
+        state.user = payload.user;
+      })
+      .addCase(register.rejected, (state, { payload }) => {
+        // state.isLoggedIn = false;
+        state.error = payload;
+      })
+      .addCase(login.pending, (state) => {
+        // state.isLoggedIn = false;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, { payload }) => {
+        // console.log(payload);
+        state.isLoggedIn = true;
+        state.token = payload.token;
+        state.user = payload.user;
+      })
+      .addCase(login.rejected, (state, { payload }) => {
+        // state.isLoggedIn = false;
+        state.error = payload;
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.error = null;
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isRefreshing = false;
+      });
+  },
+});
+export const authReducer = authSlice.reducer;

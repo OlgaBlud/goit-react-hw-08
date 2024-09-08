@@ -5,7 +5,6 @@ import {
   addContact,
 } from "../contacts/operations";
 import { selectFilterValue } from "../filters/slice";
-// import { selectFilterValue } from "../filtersSlice";
 
 const INITIAL_STATE = {
   items: [],

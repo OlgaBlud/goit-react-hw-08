@@ -4,6 +4,7 @@ import {
   deleteContact,
   addContact,
 } from "../contacts/operations";
+import { logout } from "../auth/operations";
 
 const INITIAL_STATE = {
   items: [],
@@ -51,6 +52,11 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.items = [];
+        state.error = null;
+        state.isLoading = false;
       });
   },
 });

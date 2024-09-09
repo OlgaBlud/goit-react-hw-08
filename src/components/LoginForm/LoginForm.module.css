@@ -1,6 +1,10 @@
 .form {
-  border: 1px solid black;
-  padding: 20px;
+  border: 1px solid rgb(176, 176, 176);
+  padding: 15px 30px;
+  max-width: 650px;
+  margin: 0px auto;
+  box-shadow: rgba(120, 120, 120, 0.75) 0px 0px 10px 2px;
+  border-radius: 5px;
 }
 
 .label {
@@ -24,11 +28,17 @@
   padding: 10px 20px;
   min-width: 140px;
   border-radius: 15px;
-  background-color: #aeaeae;
+  background-color: #04ba6e;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #046e42;
+  }
 }
 .errorText {
   font-size: 14px;

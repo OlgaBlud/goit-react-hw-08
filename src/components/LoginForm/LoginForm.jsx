@@ -60,15 +60,11 @@ const LoginForm = () => {
           />
         </label>
 
-        <button
-          //   disabled={Object.keys(errors).length > 0}
-          className={css.submitBtn}
-          type="submit"
-        >
+        <button className={css.submitBtn} type="submit">
           Log In
         </button>
         {error && (
-          <p className={css.errorText}>Oops, some error occured... {error}</p>
+          <p className={css.errorText}>Oops, some error occurred... {error}</p>
         )}
       </Form>
     </Formik>

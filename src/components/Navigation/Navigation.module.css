@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+.link {
+  color: black;
+  font-size: 25px;
+  margin: 0 15px;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #04ba6e;
+  }
+}

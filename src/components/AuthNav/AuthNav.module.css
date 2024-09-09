@@ -1,0 +1,11 @@
+.link {
+  display: inline-block;
+  padding: 12px;
+  color: black;
+  font-size: 25px;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #04ba6e;
+  }
+}

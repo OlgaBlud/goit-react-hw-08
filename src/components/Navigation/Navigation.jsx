@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   return (
-    <nav>
+    <nav className={css.navigation}>
       <NavLink className={css.link} to="/">
         Home Page
       </NavLink>

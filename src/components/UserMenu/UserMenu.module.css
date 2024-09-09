@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username {
+  font-weight: 700;
+}
+.button {
+  border: none;
+  margin: 0 auto;
+  padding: 10px 20px;
+  min-width: 140px;
+  border-radius: 15px;
+  background-color: #04ba6e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #046e42;
+  }
+}

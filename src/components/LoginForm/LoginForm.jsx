@@ -9,7 +9,6 @@ import { selectAuthError } from "../../redux/auth/selectors";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectAuthError);
-  console.log(error);
   const initialValues = {
     email: "",
     password: "",
@@ -23,7 +22,6 @@ const LoginForm = () => {
       .max(100, "Password must be less than 100 characters"),
   });
   const handleFormSubmit = (value) => {
-    // console.log(value);
     dispatch(login(value));
   };
 

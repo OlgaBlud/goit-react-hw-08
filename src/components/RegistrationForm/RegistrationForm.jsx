@@ -9,7 +9,6 @@ import { selectAuthError } from "../../redux/auth/selectors";
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectAuthError);
-  console.log(error);
 
   const initialValues = {
     name: "",
@@ -29,7 +28,6 @@ const RegistrationForm = () => {
       .max(100, "Password must be less than 100 characters"),
   });
   const handleFormSubmit = (value) => {
-    // console.log(value);
     dispatch(register(value));
   };
 

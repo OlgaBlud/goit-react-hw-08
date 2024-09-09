@@ -41,11 +41,3 @@ const ContactList = () => {
 };
 
 export default ContactList;
-
-// const onAddContact = (newContact) => {
-//   dispatch(addContact(newContact))
-//     .unwrap()
-//     .then(() => {
-//       toast.success("Contact added successfully!");
-//     });
-// };

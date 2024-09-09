@@ -16,7 +16,7 @@ const ContactsPage = () => {
     dispatch(fetchContacts())
       .unwrap()
       .then(() => {
-        toast.success("Contacts loaded successfully!");
+        toast.success("Phonebook loaded successfully!");
       });
   }, [dispatch]);
   return (
@@ -26,7 +26,12 @@ const ContactsPage = () => {
       <Toaster />
       <ContactForm />
       <SearchBox />
-      {items.length > 0 && <ContactList />}
+
+      {items.length > 0 ? (
+        <ContactList />
+      ) : (
+        <p>You don&apos;t have contacts yet!</p>
+      )}
     </>
   );
 };

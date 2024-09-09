@@ -5,13 +5,19 @@ import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onAddContact = (newContact) => {
-    dispatch(addContact(newContact));
+    dispatch(addContact(newContact))
+      .unwrap()
+      .then(() => {
+        toast.success("Contact added successfully!");
+      });
   };
+
   const initialValues = { name: "", number: "" };
   const nameFieldId = useId();
   const numberFieldId = useId();
@@ -32,53 +38,56 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleFormSubmit}
-      validationSchema={addContactSchema}
-    >
-      <Form className={css.form}>
-        <div className={css.inputWrap}>
-          <label className={css.inputLabel} htmlFor={nameFieldId}>
-            Name
-          </label>
-          <div>
-            <Field
-              className={css.input}
-              type="text"
-              name="name"
-              id={nameFieldId}
-            />
-            <ErrorMessage
-              className={css.inputErrorMsg}
-              name="name"
-              component="span"
-            />
+    <>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleFormSubmit}
+        validationSchema={addContactSchema}
+      >
+        <Form className={css.form}>
+          <div className={css.inputWrap}>
+            <label className={css.inputLabel} htmlFor={nameFieldId}>
+              Name
+            </label>
+            <div>
+              <Field
+                className={css.input}
+                type="text"
+                name="name"
+                id={nameFieldId}
+              />
+              <ErrorMessage
+                className={css.inputErrorMsg}
+                name="name"
+                component="span"
+              />
+            </div>
           </div>
-        </div>
-        <div className={css.inputWrap}>
-          <label className={css.inputLabel} htmlFor={numberFieldId}>
-            Phone
-          </label>
-          <div>
-            <Field
-              className={css.input}
-              type="tel"
-              name="number"
-              id={numberFieldId}
-            />
-            <ErrorMessage
-              className={css.inputErrorMsg}
-              name="number"
-              component="span"
-            />
+          <div className={css.inputWrap}>
+            <label className={css.inputLabel} htmlFor={numberFieldId}>
+              Phone
+            </label>
+            <div>
+              <Field
+                className={css.input}
+                type="tel"
+                name="number"
+                id={numberFieldId}
+              />
+              <ErrorMessage
+                className={css.inputErrorMsg}
+                name="number"
+                component="span"
+              />
+            </div>
           </div>
-        </div>
-        <button className={css.submitBtn} type="submit">
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+          <button className={css.submitBtn} type="submit">
+            Add contact
+          </button>
+        </Form>
+      </Formik>
+      <Toaster />
+    </>
   );
 };
 

@@ -18,14 +18,3 @@ export const Navigation = () => {
     </nav>
   );
 };
-
-{
-  /* //       {isLogedIn ? (
-    //         <NavLink to="/contacts">Contacts Page</NavLink>
-    //       ) : (
-    //         <>
-    //           <NavLink to="/login">Login Page</NavLink>
-    //           <NavLink to="/register">Registration Page</NavLink>
-    //         </>
-    //       )} */
-}
